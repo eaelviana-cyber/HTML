@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="pageTitle">Laboratorium Fisika Teori dan Komputasi - Fisika Unhas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
+    <style>
+        :root {
+            --primary-red: #cc0000;
+            --light-red: #ff3333;
+            --text-color: #212529;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--text-color);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .top-bar {
+            background-color: var(--primary-red); 
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
+        }
+        .top-bar a { color: #ffffff; text-decoration: none; margin-left: 15px; }
+        .top-bar a:hover { text-decoration: underline; }
+
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 0.5rem 0;
+        }
+        .navbar-brand-custom {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 700;
+            color: var(--primary-red) !important;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .nav-link-custom {
+            font-weight: 600;
+            color: var(--text-color) !important;
+            padding: 0.8rem 1rem !important;
+            border-bottom: 3px solid transparent;
+            transition: border-bottom 0.2s;
+        }
+        .nav-link-custom:hover, .nav-link-custom.active {
+            color: var(--primary-red) !important;
+            border-bottom: 3px solid var(--primary-red); 
+        }
+
+        .hero-section {
+            background-image: url('teori.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 350px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(100, 0, 0, 0.4);
+        }
+        .hero-title {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 0;
+        }
+        
+        .pointer-box {
+            min-height: 180px;
+            text-align: center;
+            padding: 30px;
+            background-color: var(--primary-red);
+            color: white;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .pointer-box:nth-child(2) { background-color: #e03333; }
+        .pointer-box:nth-child(3) { background-color: var(--light-red); }
+        .pointer-box h4 { font-family: 'Source Serif Pro', serif; font-weight: 600; margin-top: 15px; }
+        
+        .main-article h2, .content-section h2 {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ANIMASI HALAMAN */
+        .content-page {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .content-page.active-page {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sidebar-nav a {
+            font-weight: 600;
+            color: var(--primary-red);
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px dashed #e9ecef;
+            text-decoration: none;
+        }
+        .sidebar-nav a:hover { color: var(--light-red); }
+        .card[style*="border-top"] { border-top-color: var(--primary-red) !important; }
+        
+        .vision-mission-box {
+            border-left: 5px solid var(--primary-red);
+            padding-left: 20px;
+            background-color: var(--bg-light);
+        }
+        .mission-list li {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        footer {
+            background-color: #343a40; 
+            color: #adb5bd;
+            padding: 2.5rem 0;
+            font-size: 0.9rem;
+        }
+        footer h6 { color: white; font-weight: 700; }
+        footer a { color: #adb5bd; text-decoration: none; display: block; padding: 3px 0; }
+        footer a:hover { color: white; }
+
+        .btn-outline-primary {
+            --bs-btn-color: var(--primary-red);
+            --bs-btn-border-color: var(--primary-red);
+            --bs-btn-hover-bg: var(--primary-red);
+            --bs-btn-hover-border-color: var(--primary-red);
+            --bs-btn-active-bg: var(--primary-red);
+            --bs-btn-active-border-color: var(--primary-red);
+        }
+
+        /* brand & logo sejajar */
+        .navbar-brand-custom {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-logo {
+            height: 45px;
+            flex-shrink: 0;
+        }
+        .brand-text span {
+            font-size: 0.65rem;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        /* Language toggle */
+        .lang-toggle {
+            cursor: pointer;
+        }
+        .lang-toggle.active-lang {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* ====== STAF: kartu + foto/avatar ====== */
+        .staff-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .staff-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid #dee2e6;
+            background-color: #f1f3f5;
+        }
+        .staff-name {
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+        .staff-title {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* ====== MAHASISWA: kartu per angkatan ====== */
+        .anggota-section {
+            margin-bottom: 2rem;
+        }
+        .anggota-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            padding: 18px 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            height: 100%;
+        }
+        .anggota-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .badge-angkatan {
+            background-color: var(--primary-red);
+            color: #fff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+        }
+        .anggota-card ol {
+            margin-bottom: 0;
+            padding-left: 1.2rem;
+            font-size: 0.95rem;
+        }
+        .anggota-card li + li {
+            margin-top: 4px;
+        }
+
+        /* ====== AKADEMIK: kartu mata kuliah & berita kolokium ====== */
+        .akademik-hero-box {
+            border-radius: 12px;
+            padding: 18px 22px;
+            background: linear-gradient(135deg, #fff3f3, #ffffff);
+            border: 1px solid #ffd6d6;
+            margin-bottom: 28px;
+        }
+        .akademik-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: var(--primary-red);
+            color: #fff;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .akademik-hero-text {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .course-category-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            padding: 18px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            height: 100%;
+        }
+        .course-category-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .course-icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #fff4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ffd6d6;
+        }
+        .course-category-title {
+            font-size: 1.05rem;
+            margin: 0;
+            color: var(--primary-red);
+        }
+        .course-category-subtitle {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        .course-category-card ul {
+            padding-left: 1.1rem;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        .course-category-card li + li {
+            margin-top: 4px;
+        }
+
+        .akademik-news-card {
+            margin-top: 32px;
+            padding: 22px 22px 18px;
+            border-radius: 12px;
+            border: 1px solid #ffe0e0;
+            background: linear-gradient(135deg, #fff7f7, #ffffff);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .akademik-news-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: var(--primary-red);
+            color: #fff;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .akademik-news-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .akademik-news-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        .akademik-news-footer {
+            font-size: 0.85rem;
+            color: #6c757d;
+            border-top: 1px dashed #f0b6b6;
+            margin-top: 10px;
+            padding-top: 8px;
+        }
+
+        /* ====== RISET: daftar skripsi ====== */
+        .riset-hero-box {
+            border-radius: 12px;
+            padding: 18px 22px;
+            background: linear-gradient(135deg, #f8fbff, #ffffff);
+            border: 1px solid #cfe2ff;
+            margin-bottom: 28px;
+        }
+        .riset-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: var(--primary-red);
+            color: #fff;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .riset-hero-text {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .research-card {
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+            background-color: #ffffff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        .research-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .research-avatar-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #fff0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ffd6d6;
+        }
+        .research-name {
+            margin: 0;
+            font-weight: 600;
+        }
+        .research-nim-badge {
+            display: inline-block;
+            margin-top: 2px;
+            font-size: 0.8rem;
+            background-color: #f1f3f5;
+            border-radius: 999px;
+            padding: 2px 10px;
+            color: #495057;
+        }
+        .research-title-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6c757d;
+            margin-top: 8px;
+            margin-bottom: 2px;
+        }
+        .research-title-text {
+            font-style: italic;
+            margin-bottom: 0;
+        }
+        .research-side-card {
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            padding: 16px 18px;
+            background-color: #ffffff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            font-size: 0.95rem;
+        }
+        .research-side-card ul {
+            padding-left: 1.1rem;
+            margin-bottom: 0;
+        }
+    </style>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container d-flex justify-content-end">
+            <a href="#">Fakultas MIPA Unhas</a>
+            <a href="#">SIAKAD</a>
+            <a href="#">Email</a>
+            <a href="#" class="lang-toggle active-lang" data-lang="id" onclick="setLanguage('id'); return false;">ID</a> |
+            <a href="#" class="lang-toggle" data-lang="en" onclick="setLanguage('en'); return false;">EN</a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+      <div class="container">
+        <!-- BRAND: LOGO DI KIRI, TULISAN DI KANAN -->
+        <a class="navbar-brand navbar-brand-custom" href="#" onclick="showPage('home')">
+            <img src="logo unhas.png" alt="Logo Unhas" class="brand-logo">
+            <div class="brand-text">
+                <span class="d-block small text-muted fw-normal">
+                    Laboratorium Fisika Teori &amp; Komputasi
+                </span>
+                FISIKA UNHAS
+            </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom nav-home active"
+                   href="#" onclick="showPage('home')" data-i18n-key="navHome">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom nav-about"
+                   href="#" onclick="showPage('about')" data-i18n-key="navAbout">Tentang</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom nav-akademik"
+                   href="#" onclick="showPage('akademik')" data-i18n-key="navAkademik">Akademik</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom nav-riset"
+                   href="#" onclick="showPage('riset')" data-i18n-key="navRiset">Riset</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom nav-pengabdian"
+                   href="#" onclick="showPage('pengabdian')" data-i18n-key="navPengabdian">Pengabdian</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom nav-staf"
+                   href="#" onclick="showPage('staf')" data-i18n-key="navStaf">Staf</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom nav-mahasiswa"
+                   href="#" onclick="showPage('mahasiswa')" data-i18n-key="navMahasiswa">Mahasiswa</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="hero-section mb-5" id="hero-section">
+        <div class="container position-relative">
+            <p class="mb-1 small" data-i18n-key="heroTopline">
+                FISIKA FAKULTAS MIPA, UNIVERSITAS HASANUDDIN
+            </p>
+            <h1 class="hero-title" data-i18n-key="heroTitle">
+                Laboratorium Fisika Teori dan Komputasi
+            </h1>
+            <p class="lead" id="hero-tagline" data-i18n-key="heroTagline">
+                Pusat pengembangan kajian fisika fundamental dan pemodelan numerik di Indonesia Timur.
+            </p>
+        </div>
+    </div>
+
+    <div class="main-content-wrapper">
+        
+        <!-- HALAMAN BERANDA -->
+        <div id="home-page" class="content-page" style="display: block;">
+            
+            <div class="container" style="margin-top: -100px; position: relative; z-index: 10;">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="pointer-box shadow">
+                            <i class="bi bi-person-workspace" style="font-size: 2rem;"></i>
+                            <h4>Pendidikan</h4>
+                            <p class="small mb-0">Program sarjana dan pascasarjana dengan fokus Fisika Teori, Partikel, dan Komputasi.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="pointer-box shadow">
+                            <i class="bi bi-journals" style="font-size: 2rem;"></i>
+                            <h4>Riset</h4>
+                            <p class="small mb-0">Publikasi internasional dan pengembangan model komputasi untuk fisika modern.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="pointer-box shadow">
+                            <i class="bi bi-people" style="font-size: 2rem;"></i>
+                            <h4>Jangkauan</h4>
+                            <p class="small mb-0">Kegiatan seminar, workshop, dan pengabdian masyarakat terkait fisika.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-8 main-article">
+                        <h2>Selamat Datang</h2>
+                        <p class="fs-5" style="font-family: 'Source Serif Pro', serif;">Laboratorium Fisika Teori dan Komputasi, bagian integral dari Jurusan Fisika FMIPA Universitas Hasanuddin, memiliki komitmen yang kuat dalam memajukan ilmu fisika fundamental dan penerapannya melalui pendekatan pemodelan dan simulasi komputasi.</p>
+                        
+                        <p>Kami memiliki sejarah panjang dan tradisi yang kaya dalam bidang pendidikan dan penelitian yang mencakup Teori Relativitas, Mekanika Kuantum, Fisika Partikel, hingga Fisika Komputasi. Laboratorium ini berupaya menghasilkan lulusan yang tidak hanya menguasai konsep fisika murni, tetapi juga mahir dalam analisis numerik dan data science.</p>
+                        
+                        <p class="text-end fst-italic text-muted"><a href="#" onclick="showPage('about')">Baca selengkapnya tentang sejarah dan visi kami &rarr;</a></p>
+
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h2>Program Akademik</h2>
+                                <p class="lead text-muted">Kami menawarkan program studi yang fokus pada pemahaman mendalam dan aplikasi di berbagai bidang fisika.</p>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <i class="bi bi-mortarboard-fill mb-2" style="font-size: 1.5rem; color: var(--primary-red);"></i>
+                                        <h5 class="card-title fw-bold">Program Sarjana Fisika</h5>
+                                        <p class="card-text small">Mempelajari dasar-dasar fisika dengan spesialisasi pada Fisika Teori, Elektronika, Material, dan Medik.</p>
+                                        <a href="#" class="btn btn-sm btn-outline-primary" onclick="showPage('akademik')">Lihat Kurikulum Peminatan</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <i class="bi bi-braces-fill mb-2" style="font-size: 1.5rem; color: var(--light-red);"></i>
+                                        <h5 class="card-title fw-bold">Magister Fisika</h5>
+                                        <p class="card-text small">Fokus pada penelitian mendalam di bidang Fisika Teori, Material Komputasi, dan Kuantum.</p>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">Lihat Persyaratan</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="mt-5">Berita Terbaru</h2>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action py-3">
+                                <small class="text-muted d-block">16 s.d 20 November 2025</small>
+                                <p class="mb-1 fw-bold">Mahasiswi Lab. Teori dan Komputasi, Nurhaliza Raih Medali Perunggu ONMIPA Nasional 2025</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action py-3">
+                                <small class="text-muted d-block">22 Oktober 2025</small>
+                                <p class="mb-1 fw-bold">Kolokium Sistem Kompleks Bumi: Lab. Fisika Teoretik Unhas Hadirkan Peneliti BRIN, Dr. Albertus Sulaiman</p>
+                            </a>
+                        </div>
+                        <div class="text-center mt-3 mb-5">
+                            <a href="#" class="btn btn-outline-secondary">Lihat Semua Berita &rarr;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="card p-3 mb-4 shadow-sm" style="border-top: 4px solid var(--primary-red);">
+                            <h5 class="fw-bold text-dark">Informasi Cepat</h5>
+                            <div class="sidebar-nav">
+                                <a href="#" onclick="showPage('staf')">Staf Pengajar</a>
+                                <a href="#">Fasilitas Lab</a>
+                                <a href="#" onclick="showPage('riset')">Topik Riset &amp; Skripsi</a>
+                                <a href="#">Jurnal &amp; Publikasi</a>
+                                <a href="#" onclick="showPage('mahasiswa')">Keanggotaan Lab</a>
+                            </div>
+                        </div>
+
+                        <div class="card p-3 mb-4 shadow-sm">
+                            <h5 class="fw-bold text-dark">Hubungi Kami</h5>
+                            <ul class="list-unstyled small mb-0">
+                                <li><i class="bi bi-geo-alt-fill me-2 text-muted"></i> Gedung Fisika F.MIPA, Kampus UNHAS Tamalanrea</li>
+                                <li><i class="bi bi-telephone-fill me-2 text-muted"></i> +62 411 586000</li>
+                                <li><i class="bi bi-envelope-fill me-2 text-muted"></i> <a href="mailto:ftk_fisika@unhas.ac.id">ftk_fisika@unhas.ac.id</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN TENTANG -->
+        <div id="about-page" class="content-page" style="display: none;">
+            <div class="container py-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tentang</li>
+                    </ol>
+                </nav>
+                
+                <h1 class="text-center mb-5" style="font-family: 'Source Serif Pro', serif; font-weight: 700; color: var(--primary-red);">Laboratorium Fisika Teori &amp; Komputasi</h1>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <p class="lead text-center text-muted mb-5">Laboratorium ini didedikasikan untuk eksplorasi dan pemahaman prinsip-prinsip fundamental alam semesta melalui pemodelan matematika dan simulasi komputasi.</p>
+
+                        <div class="mb-5 vision-mission-box p-4 shadow-sm">
+                            <h2 style="color: var(--primary-red); margin-top: 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Visi</h2>
+                            <p class="fs-5 fw-bold fst-italic">
+                                “Menjadi pusat unggulan dalam pengembangan sains dasar dan terapannya berbasis Benua Maritim Indonesia (BMI) di tingkat nasional dan diakui di tingkat internasional pada tahun 2030”
+                            </p>
+                        </div>
+                        
+                        <div class="mb-5 p-4 bg-white shadow-sm">
+                            <h2 style="color: var(--primary-red); margin-top: 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Misi</h2>
+                            <ul class="mission-list list-unstyled">
+                                <li><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-red);"></i> Menyelenggarakan kegiatan akademik secara profesional untuk menghasilkan lulusan yang bermoral, berwawasan global dan peduli terhadap kehidupan masyarakat serta memiliki kemampuan akademik yang unggul dan berdaya saing di lingkup nasional dan internasional;</li>
+                                <li><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-red);"></i> Memberikan kontribusi terhadap pengembangan ilmu pengetahuan, teknologi, sosial dan budaya (IPTEKSBUD) sains dengan mendukung penelitian berbasis BMI spesifik;</li>
+                                <li><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-red);"></i> Menyebarkan ipteksbud sains dan penemuan baru yang bermanfaat untuk kemaslahatan BMI melalui kemitraan dengan lembaga-lembaga lain.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-center mt-5">
+                            <a href="#" class="btn btn-lg btn-outline-secondary" onclick="showPage('home')"><i class="bi bi-arrow-left me-2"></i> Kembali ke Beranda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN AKADEMIK -->
+        <div id="akademik-page" class="content-page" style="display: none;">
+            <div class="container py-5">
+                
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Akademik</li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-center mb-4" style="font-family: 'Source Serif Pro', serif; font-weight: 700; color: var(--primary-red);">
+                    Peminatan Teori dan Komputasi
+                </h1>
+
+                <div class="akademik-hero-box">
+                    <span class="akademik-hero-badge">
+                        <i class="bi bi-mortarboard"></i>
+                        Kurikulum Peminatan
+                    </span>
+                    <p class="akademik-hero-text mt-2">
+                        Peminatan Teori dan Komputasi memfokuskan pembelajaran pada pemahaman mendalam fisika teoretik
+                        serta keterampilan komputasi modern. Berikut adalah kelompok mata kuliah yang dapat diambil
+                        oleh mahasiswa peminatan ini.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Dasar Teori & Matematika -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="course-category-card">
+                            <div class="course-category-header">
+                                <div class="course-icon-circle">
+                                    <i class="bi bi-function" style="font-size: 1.3rem; color: var(--primary-red);"></i>
+                                </div>
+                                <h4 class="course-category-title">Dasar Teori &amp; Matematika</h4>
+                            </div>
+                            <p class="course-category-subtitle">
+                                Fondasi matematis dan teori fisika untuk riset lanjutan.
+                            </p>
+                            <ul>
+                                <li>Fisika Matematika III</li>
+                                <li>Mekanika Kuantum</li>
+                                <li>Mekanika Kuantum Relativistik</li>
+                                <li>Teori Relativitas Umum</li>
+                                <li>Dinamika Nonlinier</li>
+                                <li>Teori Perubahan Fasa</li>
+                                <li>Fisika Teoritik Bahan Mampat</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pemrograman & Komputasi -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="course-category-card">
+                            <div class="course-category-header">
+                                <div class="course-icon-circle">
+                                    <i class="bi bi-code-slash" style="font-size: 1.3rem; color: var(--primary-red);"></i>
+                                </div>
+                                <h4 class="course-category-title">Pemrograman &amp; Komputasi</h4>
+                            </div>
+                            <p class="course-category-subtitle">
+                                Keterampilan komputasi untuk simulasi dan analisis numerik.
+                            </p>
+                            <ul>
+                                <li>Pengantar Linux</li>
+                                <li>Pengantar Pemrograman Internet</li>
+                                <li>Pengolahan Citra Digital</li>
+                                <li>Pembelajaran Mesin</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Fisika Partikel -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="course-category-card">
+                            <div class="course-category-header">
+                                <div class="course-icon-circle">
+                                    <i class="bi bi-stars" style="font-size: 1.3rem; color: var(--primary-red);"></i>
+                                </div>
+                                <h4 class="course-category-title">Fisika Partikel</h4>
+                            </div>
+                            <p class="course-category-subtitle">
+                                Kajian struktur terdalam materi dan interaksinya.
+                            </p>
+                            <ul>
+                                <li>Pengantar Fisika Partikel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Berita Kolokium -->
+                <div class="akademik-news-card">
+                    <span class="akademik-news-badge">
+                        <i class="bi bi-megaphone-fill"></i>
+                        Colloquium – Grup Fisika Teoretik
+                    </span>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="akademik-news-title">
+                                EARTH, CLIMATE AND ATMOSPHERE AS COMPLEX SYSTEMS
+                            </div>
+                            <div class="akademik-news-meta">
+                                Narasumber: <strong>Dr. Albertus Sulaiman</strong><br>
+                                Pusat Riset Climate and Atmosphere — BRIN
+                            </div>
+                            <p class="mb-2" style="font-size: 0.95rem;">
+                                <strong>Waktu &amp; Tempat:</strong><br>
+                                📅 Rabu, 22 Oktober 2025<br>
+                                ⏰ 10.00 WITA – selesai<br>
+                                📍 Lab Fisika Teoretik
+                            </p>
+                            <p class="mb-1" style="font-size: 0.95rem;">
+                                <strong>Peserta:</strong> Mahasiswa (S1, S2, S3) dan Dosen
+                            </p>
+                        </div>
+                        <div class="col-md-4 mt-3 mt-md-0">
+                            <div style="font-size: 0.9rem;">
+                                <strong>Penyelenggara:</strong><br>
+                                Departemen Fisika – Universitas Hasanuddin<br>
+                                Bekerja sama dengan BRIN
+                            </div>
+                            <div class="akademik-news-footer mt-2">
+                                Instagram: <strong>@fisika_unhas</strong><br>
+                                Website: <strong>phys.sci.unhas.ac.id</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- HALAMAN RISET -->
+        <div id="riset-page" class="content-page" style="display: none;">
+            <div class="container py-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Riset</li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-center mb-4" style="font-family: 'Source Serif Pro', serif; font-weight: 700; color: var(--primary-red);">
+                    Riset &amp; Skripsi Mahasiswa
+                </h1>
+
+                <div class="riset-hero-box">
+                    <span class="riset-hero-badge">
+                        <i class="bi bi-journal-text"></i>
+                        Daftar Judul Skripsi
+                    </span>
+                    <p class="riset-hero-text mt-2">
+                        Daftar berikut menampilkan beberapa judul skripsi yang dikerjakan di Laboratorium Fisika Teori &amp; Komputasi.
+                        Topik-topik ini menggambarkan kekuatan riset lab pada bidang astrofisika, simulasi komputasi, serta
+                        penerapan metode numerik dan pembelajaran mesin.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <!-- Skripsi 1 -->
+                        <div class="research-card">
+                            <div class="research-header">
+                                <div class="research-avatar-circle">
+                                    <i class="bi bi-person" style="color: var(--primary-red); font-size: 1.1rem;"></i>
+                                </div>
+                                <div>
+                                    <p class="research-name">Andi Agung Prawira Negara</p>
+                                    <span class="research-nim-badge">NIM: H021171510</span>
+                                </div>
+                            </div>
+                            <div class="research-title-label">Judul Skripsi</div>
+                            <p class="research-title-text">
+                                “Studi Laju Kehilangan Massa pada Evolusi Bintang Red Supergiant (RSG)”
+                            </p>
+                        </div>
+
+                        <!-- Skripsi 2 -->
+                        <div class="research-card">
+                            <div class="research-header">
+                                <div class="research-avatar-circle">
+                                    <i class="bi bi-person" style="color: var(--primary-red); font-size: 1.1rem;"></i>
+                                </div>
+                                <div>
+                                    <p class="research-name">Musdalifah</p>
+                                    <span class="research-nim-badge">NIM: H021191048</span>
+                                </div>
+                            </div>
+                            <div class="research-title-label">Judul Skripsi</div>
+                            <p class="research-title-text">
+                                “Studi Perubahan Sifat Struktur dan Termodinamik Pelipatan Protein Model HP Menggunakan
+                                Simulasi Monte Carlo dengan Algoritma Wang-Landau”
+                            </p>
+                        </div>
+
+                        <!-- Skripsi 3 -->
+                        <div class="research-card">
+                            <div class="research-header">
+                                <div class="research-avatar-circle">
+                                    <i class="bi bi-person" style="color: var(--primary-red); font-size: 1.1rem;"></i>
+                                </div>
+                                <div>
+                                    <p class="research-name">Ayu Lestari</p>
+                                    <span class="research-nim-badge">NIM: H021171313</span>
+                                </div>
+                            </div>
+                            <div class="research-title-label">Judul Skripsi</div>
+                            <p class="research-title-text">
+                                “Klasifikasi Bintang RR Lyrae / Cepheid / Mira Menggunakan Metode Naïve Bayes”
+                            </p>
+                        </div>
+
+                        <!-- Skripsi 4 -->
+                        <div class="research-card">
+                            <div class="research-header">
+                                <div class="research-avatar-circle">
+                                    <i class="bi bi-person" style="color: var(--primary-red); font-size: 1.1rem;"></i>
+                                </div>
+                                <div>
+                                    <p class="research-name">Safrullah</p>
+                                    <span class="research-nim-badge">NIM: H021171021</span>
+                                </div>
+                            </div>
+                            <div class="research-title-label">Judul Skripsi</div>
+                            <p class="research-title-text">
+                                “Studi Perubahan Sifat Struktur dan Termodinamik Pelipatan Protein Model HP Menggunakan
+                                Simulasi Monte Carlo dengan Algoritma Wang-Landau”
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar bidang riset -->
+                    <div class="col-lg-4">
+                        <div class="research-side-card">
+                            <h5 class="fw-bold mb-2" style="color: var(--primary-red);">
+                                Bidang Riset Utama
+                            </h5>
+                            <p class="mb-2">
+                                Judul-judul skripsi di atas merepresentasikan beberapa fokus riset di Lab Teori &amp; Komputasi:
+                            </p>
+                            <ul>
+                                <li>Astrofisika bintang dan evolusi Red Supergiant.</li>
+                                <li>Simulasi Monte Carlo dan algoritma Wang-Landau pada pelipatan protein.</li>
+                                <li>Penerapan metode statistik &amp; Naïve Bayes untuk klasifikasi bintang variabel.</li>
+                            </ul>
+                            <p class="mt-3 mb-0" style="font-size: 0.9rem; color: #6c757d;">
+                                Mahasiswa didorong untuk menggabungkan <em>model teoretik</em>, <em>komputasi</em>, dan
+                                <em>analisis data</em> dalam riset akhir mereka.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- HALAMAN PENGABDIAN -->
+        <div id="pengabdian-page" class="content-page" style="display: none;">
+            <div class="container py-5">
+                
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Pengabdian</li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-center mb-4"
+                    style="font-family: 'Source Serif Pro', serif; font-weight: 700; color: var(--primary-red);">
+                    Pengabdian kepada Masyarakat
+                </h1>
+
+                <p class="text-center text-muted mb-5" style="font-size: 1.05rem;">
+                    Laboratorium Fisika Teori &amp; Komputasi turut berperan aktif dalam kegiatan pengabdian masyarakat,
+                    sosialisasi pendidikan, dan kolaborasi dengan sekolah maupun industri untuk menyebarkan wawasan
+                    sains dan fisika kepada masyarakat luas.
+                </p>
+
+                <div class="row g-4">
+
+                    <!-- Card 1 – Sosialisasi SMA 1 Bantaeng -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm" style="border-top: 4px solid var(--primary-red);">
+                            <img src="pengabdian_bantaeng.jpg" class="card-img-top" alt="SMA 1 Bantaeng">
+                            <div class="card-body">
+                                <span class="badge text-bg-danger mb-2">Sosialisasi Pendidikan</span>
+                                <h5 class="fw-bold">Pengabdian dan Sosialisasi Fisika di SMA Negeri 1 Bantaeng</h5>
+                                <p class="small text-muted mb-2">Jumat, 2 Mei 2025</p>
+                                <p class="card-text small">
+                                    Tim Departemen Fisika FMIPA Unhas melaksanakan kegiatan pengabdian masyarakat
+                                    berupa sosialisasi program studi dan pengenalan dunia fisika kepada siswa SMA Negeri 1 Bantaeng.
+                                    Kegiatan ini bertujuan meningkatkan literasi sains serta mendorong minat siswa melanjutkan studi di bidang fisika.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 – PKL PT Energy Bayu Jeneponto -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm" style="border-top: 4px solid var(--primary-red);">
+                            <img src="pkl_jeneponto.jpg" class="card-img-top" alt="PKL PT Energy Bayu Jeneponto">
+                            <div class="card-body">
+                                <span class="badge text-bg-danger mb-2">Kunjungan Industri</span>
+                                <h5 class="fw-bold">PKL Mahasiswa Fisika di PT Energy Bayu Jeneponto</h5>
+                                <p class="small text-muted mb-2">Jumat, 2 Mei 2025</p>
+                                <p class="card-text small">
+                                    Mahasiswa Departemen Fisika mengikuti Praktek Kuliah Lapangan (PKL) di PT Energy Bayu Jeneponto.
+                                    Selain pemahaman tentang pembangkit listrik tenaga bayu, kegiatan ini juga memuat sesi sosialisasi
+                                    mengenai peluang riset dan peminatan di Fisika Komputasi, Elektronika, dan Energi Terbarukan.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#" onclick="showPage('home')" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-2"></i>Kembali ke Beranda
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN STAF -->
+        <div id="staf-page" class="content-page" style="display: none;">
+            <div class="container py-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Staf</li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-center mb-4" style="font-family: 'Source Serif Pro', serif; font-weight: 700; color: var(--primary-red);">
+                    Staf Pengajar Laboratorium Fisika Teori dan Komputasi
+                </h1>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+
+                        <div class="staff-card">
+                            <img src="wira.jpg" alt="Prof. Dr. rer-nat Wira Bahari Nurdin" class="staff-avatar">
+                            <div>
+                                <p class="staff-name">Prof. Dr. rer-nat Wira Bahari Nurdin</p>
+                                <p class="staff-title">Guru Besar / IV.d</p>
+                            </div>
+                        </div>
+
+                        <div class="staff-card">
+                            <img src="tasrief.jpg" alt="Prof. Dr. Tasrief Surungan, M.Sc." class="staff-avatar">
+                            <div>
+                                <p class="staff-name">Prof. Dr. Tasrief Surungan, M.Sc.</p>
+                                <p class="staff-title">Guru Besar / IV.c</p>
+                            </div>
+                        </div>
+
+                        <div class="staff-card">
+                            <img src="bansawang.jpg" alt="Drs. Bansawang BJ, M.Sc." class="staff-avatar">
+                            <div>
+                                <p class="staff-name">Drs. Bansawang BJ, M.Sc.</p>
+                                <p class="staff-title">Lektor Kepala / IV.a</p>
+                            </div>
+                        </div>
+
+                        <div class="staff-card">
+                            <img src="eko-juarlin.jpg" alt="Eko Juarlin, S.Si., M.Si." class="staff-avatar">
+                            <div>
+                                <p class="staff-name">Eko Juarlin, S.Si., M.Si.</p>
+                                <p class="staff-title">Lektor / III.d</p>
+                            </div>
+                        </div>
+
+                        <div class="staff-card">
+                            <img src="azwar-sutiono.jpg" alt="Dr. Azwar Sutiono, M.Si." class="staff-avatar">
+                            <div>
+                                <p class="staff-name">Dr. Azwar Sutiono, M.Si.</p>
+                                <p class="staff-title">Dosen</p>
+                            </div>
+                        </div>
+
+                        <div class="staff-card">
+                            <img src="bayu-dirgantara.jpg" alt="Bayu Dirgantara, SST., Ph.D." class="staff-avatar">
+                            <div>
+                                <p class="staff-name">Bayu Dirgantara, SST., Ph.D.</p>
+                                <p class="staff-title">Dosen</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN MAHASISWA -->
+        <div id="mahasiswa-page" class="content-page" style="display: none;">
+            <div class="container py-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Mahasiswa</li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-center mb-4" style="font-family: 'Source Serif Pro', serif; font-weight: 700; color: var(--primary-red);">
+                    Keanggotaan Laboratorium Fisika Teori dan Komputasi (2025)
+                </h1>
+
+                <p class="text-center text-muted mb-4">
+                    Daftar anggota laboratorium berdasarkan angkatan. Mahasiswa terlibat dalam diskusi mingguan, riset, dan pengembangan pemrograman komputasi.
+                </p>
+
+                <div class="row g-4 anggota-section">
+                    <div class="col-md-6">
+                        <div class="anggota-card">
+                            <div class="anggota-title">
+                                <h4 style="color: var(--primary-red); margin: 0;">Angkatan 2020</h4>
+                                <span class="badge-angkatan"><i class="bi bi-calendar-event me-1"></i>2020</span>
+                            </div>
+                            <ol>
+                                <li>Sahrul Ardiansyah</li>
+                                <li>Muh. Imam Ashshiddiqie</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="anggota-card">
+                            <div class="anggota-title">
+                                <h4 style="color: var(--primary-red); margin: 0;">Angkatan 2021</h4>
+                                <span class="badge-angkatan"><i class="bi bi-calendar-event me-1"></i>2021</span>
+                            </div>
+                            <ol>
+                                <li>Hartini</li>
+                                <li>Nursyamsi Syam</li>
+                                <li>Salim Hidayatullah</li>
+                                <li>Akmal Suratmi</li>
+                                <li>Sastri</li>
+                                <li>Misda</li>
+                                <li>Muhammad Ikram. M</li>
+                                <li>Ghulam Syuhada Wakib</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="anggota-card">
+                            <div class="anggota-title">
+                                <h4 style="color: var(--primary-red); margin: 0;">Angkatan 2022</h4>
+                                <span class="badge-angkatan"><i class="bi bi-calendar-event me-1"></i>2022</span>
+                            </div>
+                            <ol>
+                                <li>Putra Ikhsan Pratama</li>
+                                <li>Abdul Qadir Jailani</li>
+                                <li>Husnul Fatimah</li>
+                                <li>St. Nur Adnen A.</li>
+                                <li>Fikri Lukman</li>
+                                <li>Nadia Fitra</li>
+                                <li>Algun Zainal Chipada</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="anggota-card">
+                            <div class="anggota-title">
+                                <h4 style="color: var(--primary-red); margin: 0;">Angkatan 2023</h4>
+                                <span class="badge-angkatan"><i class="bi bi-calendar-event me-1"></i>2023</span>
+                            </div>
+                            <ol>
+                                <li>Elviana</li>
+                                <li>Nurhaliza</li>
+                                <li>Citra Fikriah Jamal</li>
+                                <li>Yeni Estefani Parinding</li>
+                                <li>Santri</li>
+                                <li>Angga Anugrah</li>
+                                <li>Elizabet</li>
+                                <li>Muhammad Ibrahim</li>
+                                <li>Deby Lebryawati</li>
+                                <li>Nur Fadli Yoga Nugroho</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h6>Tautan Unggulan</h6>
+                    <a href="#">SIAKAD UNHAS</a>
+                    <a href="#">Jurnal SAINTIS</a>
+                    <a href="#">Sistem Informasi Kepegawaian</a>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6>Universitas Hasanuddin</h6>
+                    <a href="#">Beranda UNHAS</a>
+                    <a href="#">Penerimaan Mahasiswa Baru</a>
+                    <a href="#">Perpustakaan</a>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6>Kontak Kami</h6>
+                    <p class="small mb-0">Jurusan Fisika FMIPA UNHAS<br>Jl. Perintis Kemerdekaan Km.10, Makassar, 90245</p>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.15);">
+            <div class="text-center small">
+                &copy; Elviana I 2025 Laboratorium Fisika Teori dan Komputasi – Jurusan Fisika FMIPA UNHAS
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Bahasa default
+        let currentLang = localStorage.getItem('labLang') || 'id';
+
+        const translations = {
+            id: {
+                pageTitleHome: 'Laboratorium Fisika Teori dan Komputasi - Fisika Unhas',
+                pageTitleAbout: 'Tentang Kami - Fisika Unhas',
+                pageTitleAkademik: 'Akademik - Lab Fisika Teori dan Komputasi',
+                pageTitleRiset: 'Riset - Lab Fisika Teori dan Komputasi',
+                pageTitlePengabdian: 'Pengabdian - Lab Fisika Teori dan Komputasi',
+                pageTitleStaf: 'Staf - Lab Fisika Teori dan Komputasi',
+                pageTitleMahasiswa: 'Mahasiswa - Lab Fisika Teori dan Komputasi',
+
+                navHome: 'Beranda',
+                navAbout: 'Tentang',
+                navAkademik: 'Akademik',
+                navRiset: 'Riset',
+                navPengabdian: 'Pengabdian',
+                navStaf: 'Staf',
+                navMahasiswa: 'Mahasiswa',
+
+                heroTopline: 'FISIKA FAKULTAS MIPA, UNIVERSITAS HASANUDDIN',
+                heroTitle: 'Laboratorium Fisika Teori dan Komputasi',
+                heroTagline: 'Pusat pengembangan kajian fisika fundamental dan pemodelan numerik di Indonesia Timur.'
+            },
+            en: {
+                pageTitleHome: 'Theoretical and Computational Physics Laboratory - Hasanuddin University',
+                pageTitleAbout: 'About Us - Hasanuddin University',
+                pageTitleAkademik: 'Academics - Theoretical & Computational Physics Lab',
+                pageTitleRiset: 'Research - Theoretical & Computational Physics Lab',
+                pageTitlePengabdian: 'Community Service - Theoretical & Computational Lab',
+                pageTitleStaf: 'Staff - Theoretical & Computational Physics Lab',
+                pageTitleMahasiswa: 'Students - Theoretical & Computational Physics Lab',
+
+                navHome: 'Home',
+                navAbout: 'About',
+                navAkademik: 'Academics',
+                navRiset: 'Research',
+                navPengabdian: 'Community Service',
+                navStaf: 'Staff',
+                navMahasiswa: 'Students',
+
+                heroTopline: 'DEPARTMENT OF PHYSICS, FACULTY OF MATH & NATURAL SCIENCES',
+                heroTitle: 'Theoretical and Computational Physics Laboratory',
+                heroTagline: 'Center for fundamental physics and numerical modeling in Eastern Indonesia.'
+            }
+        };
+
+        function applyTranslations(lang) {
+            document.querySelectorAll('[data-i18n-key]').forEach(el => {
+                const key = el.getAttribute('data-i18n-key');
+                const txt = translations[lang][key];
+                if (txt) el.textContent = txt;
+            });
+
+            document.querySelectorAll('.lang-toggle').forEach(a => {
+                a.classList.toggle('active-lang', a.dataset.lang === lang);
+            });
+
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'id');
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('labLang', lang);
+            applyTranslations(lang);
+
+            const activePage = document.querySelector('.nav-link-custom.active');
+            let titleKey = 'pageTitleHome';
+
+            if (activePage && activePage.classList.contains('nav-about')) titleKey = 'pageTitleAbout';
+            else if (activePage && activePage.classList.contains('nav-akademik')) titleKey = 'pageTitleAkademik';
+            else if (activePage && activePage.classList.contains('nav-riset')) titleKey = 'pageTitleRiset';
+            else if (activePage && activePage.classList.contains('nav-pengabdian')) titleKey = 'pageTitlePengabdian';
+            else if (activePage && activePage.classList.contains('nav-staf')) titleKey = 'pageTitleStaf';
+            else if (activePage && activePage.classList.contains('nav-mahasiswa')) titleKey = 'pageTitleMahasiswa';
+
+            document.getElementById('pageTitle').innerText = translations[lang][titleKey];
+        }
+
+        function showPage(pageId) {
+            // sembunyikan semua konten halaman + hilangkan kelas animasi
+            document.querySelectorAll('.content-page').forEach(div => {
+                div.style.display = 'none';
+                div.classList.remove('active-page');
+            });
+
+            const page = document.getElementById(pageId + '-page');
+            page.style.display = 'block';
+            // trigger animasi
+            requestAnimationFrame(() => {
+                page.classList.add('active-page');
+            });
+
+            // reset nav aktif
+            document.querySelectorAll('.nav-link-custom').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const heroSection = document.getElementById('hero-section');
+            const pointerContainer = document.querySelector('.container[style*="margin-top"]');
+            const lang = currentLang;
+
+            let titleKey = 'pageTitleHome';
+
+            if (pageId === 'home') {
+                document.querySelector('.nav-home').classList.add('active');
+                titleKey = 'pageTitleHome';
+
+                heroSection.style.display = 'flex';
+                if (pointerContainer) pointerContainer.style.display = 'flex';
+
+                const heroTopline = document.querySelector('[data-i18n-key="heroTopline"]');
+                const heroTitle = document.querySelector('[data-i18n-key="heroTitle"]');
+                const heroTagline = document.querySelector('[data-i18n-key="heroTagline"]');
+                heroTopline.textContent = translations[lang].heroTopline;
+                heroTitle.textContent = translations[lang].heroTitle;
+                heroTagline.textContent = translations[lang].heroTagline;
+
+            } else if (pageId === 'about') {
+                document.querySelector('.nav-about').classList.add('active');
+                titleKey = 'pageTitleAbout';
+                heroSection.style.display = 'none';
+                if (pointerContainer) pointerContainer.style.display = 'none';
+
+            } else if (pageId === 'akademik') {
+                document.querySelector('.nav-akademik').classList.add('active');
+                titleKey = 'pageTitleAkademik';
+                heroSection.style.display = 'none';
+                if (pointerContainer) pointerContainer.style.display = 'none';
+
+            } else if (pageId === 'riset') {
+                document.querySelector('.nav-riset').classList.add('active');
+                titleKey = 'pageTitleRiset';
+                heroSection.style.display = 'none';
+                if (pointerContainer) pointerContainer.style.display = 'none';
+
+            } else if (pageId === 'pengabdian') {
+                document.querySelector('.nav-pengabdian').classList.add('active');
+                titleKey = 'pageTitlePengabdian';
+                heroSection.style.display = 'none';
+                if (pointerContainer) pointerContainer.style.display = 'none';
+
+            } else if (pageId === 'staf') {
+                document.querySelector('.nav-staf').classList.add('active');
+                titleKey = 'pageTitleStaf';
+                heroSection.style.display = 'none';
+                if (pointerContainer) pointerContainer.style.display = 'none';
+
+            } else if (pageId === 'mahasiswa') {
+                document.querySelector('.nav-mahasiswa').classList.add('active');
+                titleKey = 'pageTitleMahasiswa';
+                heroSection.style.display = 'none';
+                if (pointerContainer) pointerContainer.style.display = 'none';
+            }
+
+            document.getElementById('pageTitle').innerText = translations[lang][titleKey];
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTranslations(currentLang);
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
